@@ -1,4 +1,4 @@
-const server = "http://localhost:3005/adopciones" //llamamos la api que estamos renderizando dentro de nustro servidor.
+const server = "https://adopciones.cyclic.app/adopciones" //llamamos la api que estamos renderizando dentro de nustro servidor.
 async function setImage() { //seguidamente creamos una funcion asincrona para renderizalo en el html
     const response = await fetch(server) //renderizamos la api que nos envia nuestro server
     const data = await response.json() //por las dudas renderizamos en .json nuevamente
