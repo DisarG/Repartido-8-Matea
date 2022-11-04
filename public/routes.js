@@ -9,18 +9,22 @@ const api = "https://api.thedogapi.com/v1/breeds?limit=15&page=0"
 router.get("/adopcion", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/adopcion/adopcion.html"))
   });
-  
-  router.get('/adopciones/:id', async (req, res)=> {
-    const params = req.params
-    async function setImageDog(){
-      const response = await fetch('https://api.thedogapi.com/v1/images/search?breed_ids=' + params.id); //hacemos un fetch de la api para que nos de la api en formato como estaria en server
-      const data = await response.json(); //pasamos la api a formato json 
-      return data;
-    }
-    const response = await setImageDog()
-    res.json(response)
-  
-  })
+  router.get('/adopciones/:id', async (req, res) => {
+  const params = req.params
+  async function setImageDog() {
+    const response = await fetch('https://api.thedogapi.com/v1/images/search?breed_ids=' + params.id, {
+      headers: {
+        "x-api-key": "live_JP4UQPFcGaKXRrP5N5YeURrtpGhuct4Ok6byJH0N0r0vNu9OQ23kU6RYuePQ5A4u"
+      }
+    }); //hacemos un fetch de la api para que nos de la api en formato como estaria en server
+    const data = await response.json(); //pasamos la api a formato json 
+    return data;
+  }
+  const response = await setImageDog()
+  res.json(response)
+
+})
+
   
   router.get('/adopciones', (req, res) => {
     async function Setimagenes() { //creamos una funcion async para poder renderizar la api en formato json.
